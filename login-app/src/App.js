@@ -1,38 +1,39 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-// Componente funcional
+const jsonData = [{
+  key: "1",
+  name: "Juan",
+}, {
+  key: "2",
+  name: "Valeria",
+}, {
+  key: "3",
+  name: "Lucas",
+}, {
+  key: "4",
+  name: "Alan",
+}];
+
 const App = () => {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleLoginClick = () => {
-    setIsLogged(true);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+  }, []);
+
+  const renderData = () => {
+    return jsonData?.map((value) => (
+      <div key={value.key}>
+        <p>{value.name}</p>
+      </div>
+    ));
+  }
 
   return (
     <div>
-      <label>
-        user
-        <input value={user} onChange={({target: {value}}) => setUser(value)} />
-      </label>
-
-      <br />
-      <br />
-
-      <label>
-        Password
-        <input value={password} onChange={({target: {value}}) => setPassword(value)} />
-      </label>
-
-      <br />
-      <br />
-
-      <button onClick={handleLoginClick}>
-        Iniciar Sesión
-      </button>
-
-      {isLogged && <h2>Logeado exitosamente!</h2>}
+      {isLoading ? <h2>Is Loading...</h2> : renderData()}
     </div>
   );
 }
