@@ -1,31 +1,38 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 // Componente funcional
 const App = () => {
-  const [name, setName] = useState("");
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogged, setIsLogged] = useState(false);
 
-  // componentDidMount
-  useEffect(() => {
-    console.log("componentDidMount")
-
-    // componentWillUnmount
-    return () => {
-      console.log("componentWillUnmount")
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("name cambio")
-  }, [name]);
-
-  // componentDidUpdate
-  useEffect(() => {
-    console.log("componentDidUpdate")
-  });
+  const handleLoginClick = () => {
+    setIsLogged(true);
+  };
 
   return (
     <div>
-      <input value={name} onChange={({target: {value}}) => setName(value)} />
+      <label>
+        user
+        <input value={user} onChange={({target: {value}}) => setUser(value)} />
+      </label>
+
+      <br />
+      <br />
+
+      <label>
+        Password
+        <input value={password} onChange={({target: {value}}) => setPassword(value)} />
+      </label>
+
+      <br />
+      <br />
+
+      <button onClick={handleLoginClick}>
+        Iniciar Sesión
+      </button>
+
+      {isLogged && <h2>Logeado exitosamente!</h2>}
     </div>
   );
 }
