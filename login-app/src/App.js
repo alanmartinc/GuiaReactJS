@@ -1,59 +1,33 @@
-import {useState, Component} from "react";
+import {useState, useEffect} from "react";
 
-/* function App() {
-  const [name, setName] = useState("Alan");
+// Componente funcional
+const App = () => {
+  const [name, setName] = useState("");
 
-  const handleHeyClick = () => {
-    setName("Martin");
-  }
+  // componentDidMount
+  useEffect(() => {
+    console.log("componentDidMount")
+
+    // componentWillUnmount
+    return () => {
+      console.log("componentWillUnmount")
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("name cambio")
+  }, [name]);
+
+  // componentDidUpdate
+  useEffect(() => {
+    console.log("componentDidUpdate")
+  });
 
   return (
     <div>
-      <h2>Hola {name}</h2>
-      <button onClick={handleHeyClick}>Hey</button>
+      <input value={name} onChange={({target: {value}}) => setName(value)} />
     </div>
   );
-} */
-
-class App extends Component {
-  // Se utiliza para declarar variables de estado
-  constructor(props) {
-    super(props);
-    console.log("constructor");
-    
-    // Se declaran las props
-    this.state = {
-      name: "",
-    }
-  }
-
-  // Se utiliza para hacer llamadas a la API
-  componentDidMount() {
-    console.log("Did Mount");
-  }
-
-  // Se utiliza para actualizar un nuevo estado
-  componentDidUpdate() {
-    console.log("Did Update");
-  }
-
-  // Previene renderings innecesarios
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  // Se utiliza para ver el estado y propiedades previas antes de ser actualizadas
-  getSnapshotBeforeUpdate(preProps, prevState) {
-    console.log(preProps, prevState);
-  }
-
-  render() {
-    return (
-      <div>
-        <input value={this.state.name} onChange={({target: {value}}) => this.setState({name: value})} />
-      </div>
-    );
-  }
 }
 
 export default App;
