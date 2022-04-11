@@ -1,7 +1,15 @@
 .search {
     height: 100vh;
     display: flex;
+    width: 100%;
+}
+
+.search--center {
     justify-content: center;
     align-items: center;
-    width: 100%;
+}
+
+.search--top {
+    justify-content: center;
+    align-items: flex-start;
 }
