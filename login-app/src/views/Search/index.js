@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBox from "./components/SearchBox";
 import data from "../../data/users.json";
-
+import SearchResults from "./components/SearchResults";
 import "./style.css";
 
 export default function Search() {
@@ -34,6 +34,7 @@ export default function Search() {
     return(
         <div className={`search ${isAtTop ? "search--top" : "search--center"}`}>
             <SearchBox onSearch={handleSearchClick} onClose={handleCloseSearch} />
+            <SearchResults results={results} />
         </div>
     );
 }
